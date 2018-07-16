@@ -57,8 +57,8 @@
         nadac jej wielkosc*/
         const ballSize = 20;
         /*ustalamy pozycje pocxatkowa pilki*/
-        let ballX = cw/2-ballSize/2;
-        let ballY = ch/2-ballSize/2;
+        let ballX = cw/2-ballSize/2
+        let ballY = ch/2-ballSize/2
 
         /*by narysowac rakietki ustalamy ich szer. i wys.*/
         const paddelHeight = 100;
@@ -69,6 +69,19 @@
         /*miejsce pocxatkowe gdzie sa ustawione paddelsy na osi y*/
         let playerY = 200;
         let aiY = 200;
+        /*ustalamy zmienne-stale okreslajace dlugosc i wyskokosc linii 
+        elementow,nastepnie w funkcji table robimy petle for*/
+        const lineWidth = 2;
+        const lineHeight = 6;
+
+        /*utworzmy zmienna okreslajace szybkosc przesuniecie pilki
+        o okreslona wartosc pikseli na osi x,
+        przechodzimy do funkcji ball*/
+        let ballSpeedX = 1;
+        /*na osi y*/ 
+        let ballSpeedY = 1;
+
+
 
 
          /*tworzymy funkcje player okreslimy  kolor za pomoca metody
@@ -78,7 +91,7 @@
             ctx.fillStyle ="green";
             ctx.fillRect(playerX, playerY, paddelWidth, paddelHeight);
         }
-        
+
         /* tworzymy funkcje do narysowania rakietki dla ai*/
         function ai () {
             ctx.fillStyle ="yellow";
@@ -90,6 +103,10 @@
          function ball(){
             ctx.fillStyle = "white";
             ctx.fillRect(ballX, ballY, ballSize, ballSize);
+            /*wartsc poczatkowa plus wartosc przesuniecia pilki na osi x*/
+            ballX = ballX + ballSpeedX;
+            /*rowniez os y*/
+            ballY = ballY + ballSpeedY;
         }
 
         /*tworzymy funkcje-bedzie rysowała nam prostokat za pomoca 
@@ -98,6 +115,14 @@
         function table(){
             ctx.fillStyle = "black";
             ctx.fillRect(0, 0, cw, ch);
+        /* petla for (i=linePosition)okresla wartosc poczatkowa gdzie ma sie zaczynac 
+        rysowanie,do kiedy petla ma sie wkonywac,i niech zrobi kolejne 
+        obiekty ,niech zmienia gdzie ma byc start,przesunaciecie o 30px 
+        w maszym przypadku*/
+            for (let linePosition = 20; linePosition < ch; linePosition+=30) {
+            ctx.fillStyle = "gray"
+            ctx.fillRect(cw/2-lineWidth/2,linePosition, lineWidth, lineHeight)
+        }
 
         }
        /*pamietamy o wywolaniu funkcji*/
