@@ -50,20 +50,34 @@
 
         /*do stalych const przypisujemy wartosci by mozna bylo z nich 
         korzystac pozniej dynamicznie*/
-        const ch = canvas.height;
         const cw = canvas.width;
+        const ch = canvas.height;
+
+        /*by narysowac pilke musimy stworzyc zmienna i 
+        nadac jej wielkosc*/
+        const ballSize = 20;
+        /*ustalamy pozycje pocxatkowa pilki*/
+        let ballX = cw/2-ballSize/2;
+        let ballY = ch/2-ballSize/2;
+        
+        function ball(){
+            ctx.fillStyle = "white";
+            ctx.fillRect(cw/2-ballSize/2, ch/2-ballSize/2, ballSize, ballSize);
+
+        }
 
         /*tworzymy funkcje-bedzie rysowała nam prostokat za pomoca 
         metody fillRect pobranej z kontekstu,dla parametrow wys i szr
         mozemy podac wczesniej utworzona zmienna*/
         function table(){
-            ctx.fillStyle;
+            ctx.fillStyle = "black";
             ctx.fillRect(0, 0, cw, ch);
 
         }
-        /*pamietamy o wywolaniu funkcji*/
-        table()
-
+       
+      table()
+      ball()
+      
 
     </script>
 </body>
