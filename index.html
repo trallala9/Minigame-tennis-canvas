@@ -1,4 +1,4 @@
-/* html:5 + tab */
+<!--  html:5 + tab -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,8 +7,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Minigame Pong</title>
+    <!-- mozemy dodac style w sekcji head -->
+    <style>
+        /*canvas nie stylujemy za pomoca css*/
+        /*resetujemy style body*/
+       
+        body {
+          margin: 0;
+          padding: 0;
+          <!-- by wysrodkowac nasz obiekt canvas w body 
+          uzyjemy wlasciwosci flex -->
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          background-color: darkslategrey;
+        }
+    </style>
 </head>
 <body>
-    
+    <!--ma juz okreslona wielkosc i szerkosc 
+    domyslnie a divy nie maja -->
+    <canvas></canvas>
+    <script>    
+        /*przypisujemy canvas z html za pomoca dwolnie nazwanej 
+        zmiennej i pobieramy nasz obiekt canvas */
+        const canvas = document.querySelector('canvas');
+
+        /* dodajemy kontekst czyli wszystkie wlasciwosci i metody 
+        kanvasa,wywolujemy metode getContekst */
+        const ctx = canvas.getContext('2d');
+
+        /*okreslamy wielkosc i szerokosc canvasa nie musimy pisac px
+        canvas to bitmapa*/
+        canvas.width = 1000;
+        canvas.height = 500;
+
+        /*do stalych const przypisujemy wartosci by mozna bylo z nich 
+        korzystac pozniej dynamicznie*/
+        const cw = canvas.height;
+        const ch = canvas.width;
+
+
+    </script>
 </body>
-</html>5       
+</html>     
