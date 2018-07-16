@@ -62,12 +62,34 @@
 
         /*by narysowac rakietki ustalamy ich szer. i wys.*/
         const paddelHeight = 100;
-        const paddelWidth = 40;
+        const paddelWidth = 20;
+        /*miejsce pocxatkowe gdzie sa ustawione paddelsy na osi x*/
+        const playerX = 70;
+        const aiX = 910;
+        /*miejsce pocxatkowe gdzie sa ustawione paddelsy na osi y*/
+        let playerY = 200;
+        let aiY = 200;
+
+
+         /*tworzymy funkcje player okreslimy  kolor za pomoca metody
+         fillStyle i za pomoca metody fillRect naryusjemy rakietke gracza
+         zgodnie z danymi w zmiennych*/
+        function player() {
+            ctx.fillStyle ="green";
+            ctx.fillRect(playerX, playerY, paddelWidth, paddelHeight);
+        }
         
-        function ball(){
+        /* tworzymy funkcje do narysowania rakietki dla ai*/
+        function ai () {
+            ctx.fillStyle ="yellow";
+            ctx.fillRect(aiX, aiY, paddelWidth, paddelHeight);
+        }
+        
+        /*rysujemy pilke z okresleniem jej parametrow
+         i koloru za pomoca metod*/
+         function ball(){
             ctx.fillStyle = "white";
             ctx.fillRect(ballX, ballY, ballSize, ballSize);
-
         }
 
         /*tworzymy funkcje-bedzie rysowała nam prostokat za pomoca 
@@ -78,10 +100,11 @@
             ctx.fillRect(0, 0, cw, ch);
 
         }
-       
+       /*pamietamy o wywolaniu funkcji*/
       table()
       ball()
-      
+      player()
+      ai()
 
     </script>
 </body>
