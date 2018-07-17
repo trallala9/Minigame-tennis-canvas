@@ -104,15 +104,15 @@
             ctx.fillStyle = "white";
             ctx.fillRect(ballX, ballY, ballSize, ballSize);
             /*wartsc poczatkowa plus wartosc przesuniecia pilki na osi x*/
-            ballX = ballX + ballSpeedX;
+            ballX += ballSpeedX;
             /*rowniez os y*/
-            ballY = ballY + ballSpeedY;
+            ballY += ballSpeedY;
         }
 
         /*tworzymy funkcje-bedzie rysowała nam prostokat za pomoca 
         metody fillRect pobranej z kontekstu,dla parametrow wys i szr
         mozemy podac wczesniej utworzona zmienna*/
-        function table(){
+        function table () {
             ctx.fillStyle = "black";
             ctx.fillRect(0, 0, cw, ch);
         /* petla for (i=linePosition)okresla wartosc poczatkowa gdzie ma sie zaczynac 
@@ -122,14 +122,18 @@
             for (let linePosition = 20; linePosition < ch; linePosition+=30) {
             ctx.fillStyle = "gray"
             ctx.fillRect(cw/2-lineWidth/2,linePosition, lineWidth, lineHeight)
+            }
         }
-
-        }
-       /*pamietamy o wywolaniu funkcji*/
-      table()
-      ball()
-      player()
-      ai()
+        
+       /*pamietamy o wywolaniu funkcji lub zrobmy finkcje ktora
+        bedzie wywolywala nasze funkcje*/
+        function game() {
+          table()
+          ball()
+          player()
+          ai()
+    }
+      setInterval(game, 25)
 
     </script>
 </body>
