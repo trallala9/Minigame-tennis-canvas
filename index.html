@@ -125,12 +125,15 @@
             }
         }
         
-       /*pamietamy o wywolaniu funkcji*/
-      table()
-      ball()
-      player()
-      ai()
-      setInterval(ball, 50)
+       /*pamietamy o wywolaniu funkcji lub zrobmy finkcje ktora
+        bedzie wywolywala nasze funkcje*/
+        function game() {
+          table()
+          ball()
+          player()
+          ai()
+    }
+      setInterval(game, 25)
 
     </script>
 </body>
