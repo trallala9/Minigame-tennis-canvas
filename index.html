@@ -57,8 +57,8 @@
         nadac jej wielkosc*/
         const ballSize = 20;
         /*ustalamy pozycje pocxatkowa pilki*/
-        let ballX = cw/2-ballSize/2
-        let ballY = ch/2-ballSize/2
+        let ballX = cw / 2 - ballSize / 2;
+        let ballY = ch / 2 - ballSize / 2;
 
         /*by narysowac rakietki ustalamy ich szer. i wys.*/
         const paddelHeight = 100;
@@ -87,7 +87,7 @@
          /*tworzymy funkcje player okreslimy  kolor za pomoca metody
          fillStyle i za pomoca metody fillRect naryusjemy rakietke gracza
          zgodnie z danymi w zmiennych*/
-        function player() {
+        function player () {
             ctx.fillStyle ="green";
             ctx.fillRect(playerX, playerY, paddelWidth, paddelHeight);
         }
@@ -100,7 +100,7 @@
         
         /*rysujemy pilke z okresleniem jej parametrow
          i koloru za pomoca metod*/
-         function ball(){
+         function ball () {
             ctx.fillStyle = "white";
             ctx.fillRect(ballX, ballY, ballSize, ballSize);
             /*wartsc poczatkowa plus wartosc przesuniecia pilki na osi x*/

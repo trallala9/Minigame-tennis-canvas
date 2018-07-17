@@ -1,7 +1,7 @@
 {
   "name": "minigame",
   "version": "1.0.0",
-  "description": "Minigame tennin made by canvas",
+  "description": "Minigame tennis made by canvas",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
