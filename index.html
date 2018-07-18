@@ -79,7 +79,7 @@
         przechodzimy do funkcji ball*/
         let ballSpeedX = 1;
         /*na osi y*/ 
-        let ballSpeedY = 1;
+        let ballSpeedY = 3;
 
 
 
@@ -107,6 +107,17 @@
             ballX += ballSpeedX;
             /*rowniez os y*/
             ballY += ballSpeedY;
+            /*sprawdmy czy pozycja naszej pilki dotyka krawedzi canvas*/
+            if (ballY <= 0 || ballY + ballSize >= 500){
+                ballSpeedY = -ballSpeedY;
+                speedUp();
+            }
+            if (ballX <=0 || ballX + ballSize >= cw){
+                ballSpeedX = -ballSpeedX;
+                speedUp();
+            }
+
+
         }
 
         /*tworzymy funkcje-bedzie rysowała nam prostokat za pomoca 
@@ -124,8 +135,50 @@
             ctx.fillRect(cw/2-lineWidth/2,linePosition, lineWidth, lineHeight)
             }
         }
+        /*na obiekcie canvas dodajemy listener ruchu myszki po 
+        czym funkcje ktora wyswietli string w konsoli -
         
-       /*pamietamy o wywolaniu funkcji lub zrobmy finkcje ktora
+        canvas.addEventListener("mousemove",
+        function(){
+            console.log("ruszamy");
+        })*/
+        /*w topCanvas przechowujemy informacje jak daleko od gory 
+        jest nasz obiekt canvas w oknie przegladarki za pomoca offsetTop*/
+        topCanvas = canvas.offsetTop;
+        console.log(topCanvas)
+        
+        /*zadeklarujmy funkcje ktora bedzie nasluchiwala zdarzenie 
+        za pomoca metody mousemove dodajmy doo niej parametr ktory zostanie
+        przekazany - event w naszym przypadku wyswietli w konsoli
+        function playerPosition(e){
+            console.log(e)
+        }
+        canvas.addEventListener("mousemove",playerPosition)*/
+
+
+
+        function playerPosition(e){
+            //console.log("pozycja myszki to" + (e.clientY - topCanvas));
+            playerY = e.clientY - topCanvas - paddelHeight / 2;
+            // gdy rakietka gracza wyjezdza na dole  poza canvas
+        if (playerY >= ch - paddelHeight){
+            playerY = ch - paddelHeight
+        }
+        //gdy rakietka gracza wyjezdza na gorze poza kanvas
+        if (playerY <=0){
+            playerY = 0;
+        }
+        /*pomaga w testach by oba paddelki sie ruszaly*/
+        aiY = playerY;
+    }
+    function speedUp () {
+        console.log("Przyspieszam")
+    }
+        canvas.addEventListener("mousemove",playerPosition)
+
+
+
+       /*pamietamy o wywolaniu funkcji lub zrobmy funkcje ktora
         bedzie wywolywala nasze funkcje*/
         function game() {
           table()
@@ -133,7 +186,8 @@
           player()
           ai()
     }
-      setInterval(game, 25)
+    /*funkcja game jest wywolywana 60 na sek za pomoca funkcji setInterval*/
+      setInterval(game, 1000/60 )
 
     </script>
 </body>
