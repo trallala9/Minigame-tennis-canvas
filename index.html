@@ -168,11 +168,20 @@
         if (playerY <=0){
             playerY = 0;
         }
-        /*pomaga w testach by oba paddelki sie ruszaly*/
+        /*pomaga w testach by oba paddelki sie ruszaly,gdy chemy przetestowac obie rakietki*/
         aiY = playerY;
     }
+    /*tworzymy funkcje przyspieszenia pilki chcemy by po odbiciu od wszystkich krawedzi 
+    canvas przyspieszala*/
     function speedUp () {
         console.log("Przyspieszam")
+        //predkosc x jezeli ballsPeedX jest wieksze od 0 i wieksze od 16,oba warunki musza byc spelnione
+        if(ballSpeedX > 0 && ballSpeedX < 16){
+            //jezeli warunek jest soelniony to musimy zwekszyc predkosc
+            ballSpeedX += 1;
+            //
+            else if ( ballSpeedX < 0 && ballSpeedX > 16;
+        }
     }
         canvas.addEventListener("mousemove",playerPosition)
 
