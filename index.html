@@ -169,7 +169,7 @@
             playerY = 0;
         }
         /*pomaga w testach by oba paddelki sie ruszaly,gdy chemy przetestowac obie rakietki*/
-        aiY = playerY;
+        //aiY = playerY;
     }
     /*tworzymy funkcje przyspieszenia pilki chcemy by po odbiciu od wszystkich krawedzi 
     canvas przyspieszala*/
@@ -178,11 +178,20 @@
         //predkosc x jezeli ballsPeedX jest wieksze od 0 i wieksze od 16,oba warunki musza byc spelnione
         if(ballSpeedX > 0 && ballSpeedX < 16){
             //jezeli warunek jest soelniony to musimy zwekszyc predkosc zmiennej
-            ballSpeedX += 1;
+            ballSpeedX += .4;
         }
             //
             else if(ballSpeedX < 0 && ballSpeedX > -16){
-                ballSpeedX -= 1;
+                ballSpeedX -= .4;
+        }
+        // zwiekszanie predkosc ball po zetknieciu z osia y
+        else if(ballSpeedY > 0 && ballSpeedY < 16){
+            //jezeli warunek jest soelniony to musimy zwekszyc predkosc zmiennej
+            ballSpeedY += .3;
+        }
+            //
+            else if(ballSpeedY < 0 && ballSpeedY > -16){
+                ballSpeedY -= .3;
         }
     }
         canvas.addEventListener("mousemove",playerPosition)
