@@ -108,7 +108,9 @@
             /*rowniez os y*/
             ballY += ballSpeedY;
             /*sprawdmy czy pozycja naszej pilki dotyka krawedzi canvas*/
-            if (ballY <= 0 || ballY + ballSize >= 500){
+            if (ballY <= 0 || ballY + ballSize >= ch){
+                /*jezeli pierwszy lub drugi  warunek jest spelniony
+                 to po odbiciu pileczki zmieniamy wartosc kierunku na odwrotny*/
                 ballSpeedY = -ballSpeedY;
                 speedUp();
             }
@@ -157,22 +159,87 @@
 
 
 
+        /*przypisujemy pozycje myszki do paletki gracza i dzielimy na pol
+        by pozycja kursora byla na srodku paletki (e) to nasze eventy z konsoli*/
         function playerPosition(e){
             //console.log("pozycja myszki to" + (e.clientY - topCanvas));
             playerY = e.clientY - topCanvas - paddelHeight / 2;
-            // gdy rakietka gracza wyjezdza na dole  poza canvas
+            // zabezpieczenie gdy rakietka gracza wyjezdza na dole  poza canvas
         if (playerY >= ch - paddelHeight){
             playerY = ch - paddelHeight
         }
-        //gdy rakietka gracza wyjezdza na gorze poza kanvas
+        //zabezpieczenie gdy rakietka gracza wyjezdza na gorze poza kanvas
         if (playerY <=0){
             playerY = 0;
         }
-        /*pomaga w testach by oba paddelki sie ruszaly*/
-        aiY = playerY;
+        /*pomaga w testach by oba paddelki sie ruszaly,gdy chemy przetestowac obie rakietki*/
+        //aiY = playerY;
     }
+    /*tworzymy funkcje przyspieszenia pilki chcemy by po odbiciu od wszystkich krawedzi 
+    canvas przyspieszala*/
     function speedUp () {
-        console.log("Przyspieszam")
+        //console.log("Przyspieszam")
+        //predkosc x jezeli ballsPeedX jest wieksze od 0 i wieksze od 16,oba warunki musza byc spelnione
+        if(ballSpeedX > 0 && ballSpeedX < 16){
+            //jezeli warunek jest spelniony to musimy zwekszyc predkosc zmiennej
+            ballSpeedX += .4;
+        }
+            //
+            else if(ballSpeedX < 0 && ballSpeedX > -16){
+                ballSpeedX -= .4;
+        }
+        // zwiekszanie predkosc ball po zetknieciu z osia y
+        else if(ballSpeedY > 0 && ballSpeedY < 16){
+            //jezeli warunek jest spelniony to musimy zwekszyc predkosc zmiennej
+            ballSpeedY += .3;
+        }
+            //
+            else if(ballSpeedY < 0 && ballSpeedY > -16){
+                ballSpeedY -= .3;
+        }
+    }
+    //tworzymy funkcje dla rakietki ai by nia poruszala
+    function aiPosition(){
+        /*tworzymy funkcje ktora w kazdej chwili za kazdym 
+        wywolaniem mamy info o tym gdzie jest srodek rakietki*/
+        const middlePaddel = aiY + paddelHeight/2;
+        //Srodek naszej pilki
+        const middleBall = ballY + ballSize /2;
+
+        //kiedy ballX jest wiekszy od 500
+        if(ballX > 500){
+            if (middlePaddel - middleBall > 200) {
+             //console.log("wiecej niz 200");
+             aiY -= 15;
+            }
+        else if(middlePaddel - middleBall > 50)
+        {
+            //console.log("wiecej niz 50");
+            aiY -= 5;
+        }
+        //analiza jak daleko jest pileczka od rakiettki 
+        else if(middlePaddel - middleBall < -200)
+        {
+            //console.log("<-200");
+            aiY += 15;
+        }
+        else if (middlePaddel - middleBall < -50)
+        {
+            //console.log("od -50 do -200");
+            aiY += 5;
+        }
+        else if(ballX <= 500 && ballX > 150) {
+           if(middlePaddel - middleBall > 100)
+           {
+               aiY -=3
+           }
+           else if(middlePaddel - middleBall <MediaTrackSettings -100)
+           {
+               aiY += 3;
+           }
+           
+           }
+        }
     }
         canvas.addEventListener("mousemove",playerPosition)
 
@@ -185,6 +252,7 @@
           ball()
           player()
           ai()
+          aiPosition()
     }
     /*funkcja game jest wywolywana 60 na sek za pomoca funkcji setInterval*/
       setInterval(game, 1000/60 )
